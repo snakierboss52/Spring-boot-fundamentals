@@ -1,5 +1,8 @@
 package com.platzi.springfundamentals.bean;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class BeanWithDependencyImpl implements BeanWithDependency {
 
     private Operation operation;
@@ -10,6 +13,7 @@ public class BeanWithDependencyImpl implements BeanWithDependency {
 
     @Override
     public void printWithDependency() {
-        System.out.println("Esto es una implementación del bean con dependencia y el numero de la suma de la dependencia es " + operation.sum(24));
+        log.info("Going out to the first dependency and printing the sum");
+        System.out.println(operation.sum(24));
     }
 }
