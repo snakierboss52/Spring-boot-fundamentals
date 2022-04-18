@@ -29,5 +29,6 @@ public class Users {
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     private LocalDate birthDate;
 
-
+    public Users() {
+    }
 }
