@@ -1,8 +1,4 @@
 services:
-  sonarqube:
-    image: sonarqube:lts
-    ports:
-      - 9000:9000
   app:
     image: springfundamentals
     ports:
