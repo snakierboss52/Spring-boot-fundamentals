@@ -12,7 +12,7 @@ pipeline {
         stage('Building docker container'){
             steps{
                 echo 'Building container...'
-                sh "docker run --name spring_container -i -t springfundamentals"
+                sh "docker run --name spring_container -it springfundamentals"
                 sh "docker ps"
             }
         }
