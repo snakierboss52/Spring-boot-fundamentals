@@ -18,7 +18,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @SpringBootApplication
-public class SpringFundamentalsApplication implements CommandLineRunner {
+public class SpringFundamentalsApplication {
 
     //@Autowired //not necesary on new versions of spring boot
     private ComponentDependency componentDependency;
@@ -32,17 +32,4 @@ public class SpringFundamentalsApplication implements CommandLineRunner {
         SpringApplication.run(SpringFundamentalsApplication.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        //lastExamples();
-    }
-
-    private void lastExamples(){
-        componentDependency.greeting();
-        myBean.print();
-        beanWithDependency.printWithDependency();
-        System.out.println(beanPropertiesExample.propertiesExampleName());
-        System.out.println(user.getEmail());
-        System.out.println(user.getPass());
-    }
 }
