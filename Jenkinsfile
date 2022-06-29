@@ -6,7 +6,6 @@ pipeline {
             steps {
                 echo 'Building..'
                 sh "docker build -t springfundamentals ."
-                waitUntilServicesReady
                 sh "docker images"
             }
         }
