@@ -24,6 +24,7 @@ pipeline {
             steps{
                 echo 'Pushing image to docker hub...'
                 sh "docker tag  springfundamentals:latest snakierboss/springfundamental:latest"
+                sh "docker push snakierboss/springfundamental:latest "
             }
         }
     }
