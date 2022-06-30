@@ -23,7 +23,6 @@ pipeline {
         stage('Pushing image dockerhub'){
             steps{
                 echo 'Pushing image to docker hub...'
-                sh "docker login -u USER_DOCKER -p PASS_DOCKER "
                 sh "docker tag  springfundamentals:latest snakierboss/springfundamental:latest"
             }
         }
