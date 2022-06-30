@@ -7,10 +7,10 @@ pipeline {
                 sh "docker pull snakierboss/springfundamental:latest"
             }
         }
-        stage("Sonar"){
+        stage("Running image"){
             steps{
             echo 'running image'
-            sh "docker run snakierboss/springfundamental:latest"
+            sh "docker run -d snakierboss/springfundamental:latest"
             }
         }
         stage('Post actions'){
