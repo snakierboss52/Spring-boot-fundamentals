@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages {
+        stage('Pulling image') {
+            steps {
+                echo 'Building..'
+                sh "docker pull snakierboss/springfundamental:latest"
+            }
+        }
+        stage("Sonar"){
+            steps{
+            echo 'running image'
+            sh "docker run snakierboss/springfundamental:latest"
+            }
+        }
+        stage('Post actions'){
+            steps{
+                echo 'Valida en el navegador'
+            }
+        }
+    }
+}
