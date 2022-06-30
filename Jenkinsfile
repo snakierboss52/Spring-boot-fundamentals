@@ -1,5 +1,9 @@
 pipeline {
     agent any
+     environment {
+        USER_DOCKER='snakierboss'
+        PASS_DOCKER='loslinces'
+     }
 
     stages {
         stage('Build') {
@@ -19,7 +23,7 @@ pipeline {
         stage('Pushing image dockerhub'){
             steps{
                 echo 'Pushing image to docker hub...'
-                sh "docker login -u "snakierboss" -p "loslinces" "
+                sh "docker login -u USER_DOCKER -p PASS_DOCKER "
                 sh "docker tag  springfundamentals:latest snakierboss/springfundamental:latest"
             }
         }
