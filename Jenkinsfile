@@ -17,7 +17,7 @@ pipeline {
             steps{
                 sh "mvn clean verify sonar:sonar -Dsonar.projectKey=spring-test\
                      -Dsonar.host.url=http://localhost:9000 \
-                     -Dsonar.login=sqp_b332c5a04abe7736ac2a5a8f352c01338c292bea"
+                     -Dsonar.login=sqp_85016661ac36cf68230906dacbaa4a996630a5c0"
             }
         }
         stage('Pushing image dockerhub'){
