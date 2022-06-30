@@ -1,7 +1,7 @@
 pipeline {
     agent any
      environment {
-        TOKEN_SONAR='sqp_54c57a70f24a0903e34d06266be153036351bf20'
+        TOKEN='sqp_54c57a70f24a0903e34d06266be153036351bf20'
      }
 
     stages {
