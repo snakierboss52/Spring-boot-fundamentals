@@ -16,11 +16,11 @@ pipeline {
                      -Dsonar.login=sqp_b332c5a04abe7736ac2a5a8f352c01338c292bea"
             }
         }
-        stage('Building docker container'){
+        stage('Pushing image dockerhub'){
             steps{
-                echo 'Building container...'
-                sh "docker-compose up"
-                sh "docker ps"
+                echo 'Pushing image to docker hub...'
+                sh "docker login -u “snakierboss” -p “loslinces” "
+                sh "docker tag  springfundamentals:latest snakierboss/springfundamental:latest"
             }
         }
     }
