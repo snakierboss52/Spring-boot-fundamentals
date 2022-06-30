@@ -3,14 +3,14 @@ pipeline {
     stages {
         stage('Pulling image') {
             steps {
-                echo 'Building..'
+                echo 'Pulling image..'
                 sh "docker pull snakierboss/springfundamental:latest"
             }
         }
-        stage("Running image"){
+        stage("docker compose"){
             steps{
-            echo 'running image'
-            sh "docker run -d snakierboss/springfundamental:latest"
+            echo 'running compose'
+            sh "docker-compose up -d"
             }
         }
         stage('Post actions'){

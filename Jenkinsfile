@@ -3,6 +3,7 @@ pipeline {
      environment {
         USER_DOCKER='snakierboss'
         PASS_DOCKER='loslinces'
+        TOKEN_SONAR='sqp_54c57a70f24a0903e34d06266be153036351bf20'
      }
 
     stages {
@@ -17,7 +18,7 @@ pipeline {
             steps{
                 sh "mvn clean verify sonar:sonar -Dsonar.projectKey=spring-test\
                      -Dsonar.host.url=http://localhost:9000 \
-                     -Dsonar.login=sqp_85016661ac36cf68230906dacbaa4a996630a5c0"
+                     -Dsonar.login=sqp_54c57a70f24a0903e34d06266be153036351bf20"
             }
         }
         stage('Pushing image dockerhub'){

@@ -1,9 +1,5 @@
 services:
   app:
-    image: springfundamentals
+    image: snakierboss/springfundamental:latest
     ports:
       - "8580:8580"
-
-volumes:
-  dbdata:
-    driver: local

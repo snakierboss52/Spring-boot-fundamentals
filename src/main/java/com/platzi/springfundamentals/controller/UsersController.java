@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @Data
 @RestController
-@RequestMapping("/api/v1")
 public class UsersController {
 
     @RequestMapping
@@ -18,7 +17,7 @@ public class UsersController {
         return new ResponseEntity<>("Hello from controller with changes in path", HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/")
+    @RequestMapping("/")
     public ResponseEntity<String> getMessage(){
         return function();
     }
