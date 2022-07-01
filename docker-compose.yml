@@ -1,5 +1,5 @@
 services:
   app:
-    image: snakierboss/springfundamental:latest
+    image: snakierboss/springfundamental:VERSION
     ports:
       - "8580:8580"
