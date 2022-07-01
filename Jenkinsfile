@@ -39,7 +39,7 @@ pipeline {
         stage('Deleting local images'){
             steps{
                 echo 'deleting local image'
-                sh 'docker image rm springfundamentals snakierboss/springfundamentals'
+                sh 'docker image rm springfundamentals:${VERSION} snakierboss/springfundamentals:${VERSION}'
                 sh "docker images"
             }
         }
