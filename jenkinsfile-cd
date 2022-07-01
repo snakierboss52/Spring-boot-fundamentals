@@ -4,7 +4,7 @@ pipeline {
         stage('Pulling image') {
             steps {
                 echo 'Pulling image..'
-                sh "docker pull snakierboss/springfundamental:latest"
+                sh "docker pull snakierboss/springfundamentals:latest"
             }
         }
         stage("docker compose up"){

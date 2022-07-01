@@ -26,8 +26,15 @@ pipeline {
         stage('Pushing image dockerhub'){
             steps{
                 echo 'Pushing image to docker hub...'
-                sh "docker tag  springfundamentals:latest snakierboss/springfundamental:latest"
-                sh "docker push snakierboss/springfundamental:latest "
+                sh "docker tag  springfundamentals:latest snakierboss/springfundamentals:latest"
+                sh "docker push snakierboss/springfundamentals:latest "
+            }
+        }
+        stage('Deleting local images'){
+            steps{
+                echo 'deleting local image'
+                sh 'docker image rm springfundamentals snakierboss/springfundamentals'
+                sh "docker images"
             }
         }
     }
