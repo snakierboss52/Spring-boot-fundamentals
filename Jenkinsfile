@@ -1,7 +1,15 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('mvn install'){
+            tools{
+                maven 'mvn-3.8.6'
+            }
+            steps{
+                  sh "mvn install -Dskiptest"
+            }
+        }
+        stage('package') {
             steps {
                 echo 'Building..'
                 echo TOKEN_SONAR
