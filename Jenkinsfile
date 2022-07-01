@@ -12,7 +12,6 @@ pipeline {
         stage('package') {
             steps {
                 echo 'Building..'
-                echo TOKEN_SONAR
                 sh "docker build -t springfundamentals ."
                 sh "docker images"
             }
