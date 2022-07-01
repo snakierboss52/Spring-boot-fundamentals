@@ -1,5 +1,11 @@
 pipeline {
     agent any
+
+    environment {
+        //Use Pipeline Utility Steps plugin to read information from pom.xml into env variables
+        VERSION = readMavenPom().getVersion()
+        }
+
     stages {
         stage('mvn install'){
             tools{
@@ -26,8 +32,8 @@ pipeline {
         stage('Pushing image dockerhub'){
             steps{
                 echo 'Pushing image to docker hub...'
-                sh "docker tag  springfundamentals:latest snakierboss/springfundamentals:latest"
-                sh "docker push snakierboss/springfundamentals:latest "
+                sh "docker tag  springfundamentals:latest snakierboss/springfundamentals:${VERSION}"
+                sh "docker push snakierboss/springfundamentals:${VERSION}"
             }
         }
         stage('Deleting local images'){
