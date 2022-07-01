@@ -18,7 +18,7 @@ pipeline {
         stage('package') {
             steps {
                 echo 'Building..'
-                sh "docker build -t springfundamentals ."
+                sh "docker build -t springfundamentals:${VERSION} ."
                 sh "docker images"
             }
         }
