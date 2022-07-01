@@ -7,7 +7,7 @@ pipeline {
                 sh "docker pull snakierboss/springfundamental:latest"
             }
         }
-        stage("docker compose"){
+        stage("docker compose up"){
             steps{
             echo 'running compose'
             sh "docker-compose up -d"
