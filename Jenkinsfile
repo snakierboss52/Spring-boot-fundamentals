@@ -1,13 +1,10 @@
 pipeline {
     agent any
-     environment {
-        TOKEN='sqp_54c57a70f24a0903e34d06266be153036351bf20'
-     }
-
     stages {
         stage('Build') {
             steps {
                 echo 'Building..'
+                echo TOKEN_SONAR
                 sh "docker build -t springfundamentals ."
                 sh "docker images"
             }
@@ -16,7 +13,7 @@ pipeline {
             steps{
                 sh "mvn clean verify sonar:sonar -Dsonar.projectKey=spring-test\
                      -Dsonar.host.url=http://localhost:9000 \
-                     -Dsonar.login=sqp_54c57a70f24a0903e34d06266be153036351bf20"
+                     -Dsonar.login=${TOKEN_SONAR}"
             }
         }
         stage('Pushing image dockerhub'){
