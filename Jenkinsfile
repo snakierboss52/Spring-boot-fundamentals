@@ -32,7 +32,7 @@ pipeline {
         stage('Pushing image dockerhub'){
             steps{
                 echo 'Pushing image to docker hub...'
-                sh "docker tag  springfundamentals:latest snakierboss/springfundamentals:${VERSION}"
+                sh "docker tag  springfundamentals:${VERSION} snakierboss/springfundamentals:${VERSION}"
                 sh "docker push snakierboss/springfundamentals:${VERSION}"
             }
         }
