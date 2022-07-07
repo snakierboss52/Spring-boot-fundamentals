@@ -24,6 +24,7 @@ pipeline {
                 echo 'Valida en el navegador localhost:8580'
                 echo 'Cleaning volumes'
                 sh 'docker volume prune -f'
+                sh 'docker image prune -f'
             }
         }
     }

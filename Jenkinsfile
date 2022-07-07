@@ -10,6 +10,7 @@ pipeline {
         stage('Deleting local container'){
             steps{
                 sh 'docker container prune -f'
+                sh 'docker image prune -f'
             }
         }
         stage('mvn install'){
