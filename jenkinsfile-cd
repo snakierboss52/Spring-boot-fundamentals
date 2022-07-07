@@ -10,7 +10,8 @@ pipeline {
         stage('Pulling image') {
             steps {
                 echo 'Pulling image..'
-                sh "docker pull public.ecr.aws/o0t4x4s0/springfundamentals:${VERSION}"
+                sh 'aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/o0t4x4s0'
+                sh 'docker pull public.ecr.aws/o0t4x4s0/springfundamentals:${VERSION}'
             }
         }
         stage("docker compose up"){

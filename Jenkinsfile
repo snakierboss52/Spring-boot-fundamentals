@@ -46,7 +46,7 @@ pipeline {
         stage('Deleting local images'){
             steps{
                 echo 'deleting local image'
-                sh 'docker image rm springfundamentals:${VERSION}'
+                sh 'docker image rm springfundamentals:${VERSION} public.ecr.aws/o0t4x4s0/springfundamentals:${VERSION}'
                 sh "docker container prune -f"
             }
         }
