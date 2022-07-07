@@ -4,6 +4,7 @@ pipeline {
     environment {
         //Use Pipeline Utility Steps plugin to read information from pom.xml into env variables
         VERSION = readMavenPom().getVersion()
+        REGION = 'us-east-2'
         }
 
     stages {
@@ -38,14 +39,14 @@ pipeline {
         stage('Pushing image dockerhub'){
             steps{
                 echo 'Pushing image to docker hub...'
-                sh "docker tag  springfundamentals:${VERSION} snakierboss/springfundamentals:${VERSION}"
-                sh "docker push snakierboss/springfundamentals:${VERSION}"
+                sh "docker tag springfundamentals:${VERSION} public.ecr.aws/o0t4x4s0/springfundamentals:${VERSION}"
+                sh "docker push public.ecr.aws/o0t4x4s0/springfundamentals:${VERSION}"
             }
         }
         stage('Deleting local images'){
             steps{
                 echo 'deleting local image'
-                sh 'docker image rm springfundamentals:${VERSION} snakierboss/springfundamentals:${VERSION}'
+                sh 'docker image rm springfundamentals:${VERSION}'
                 sh "docker container prune -f"
             }
         }

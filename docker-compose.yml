@@ -1,6 +1,6 @@
 services:
   app:
-    image: snakierboss/springfundamentals:${VERSION}
+    image: public.ecr.aws/o0t4x4s0/springfundamentals:${VERSION}
     container_name: spring-fundamentals
     ports:
       - "8580:8580"

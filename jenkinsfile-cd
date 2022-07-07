@@ -10,7 +10,7 @@ pipeline {
         stage('Pulling image') {
             steps {
                 echo 'Pulling image..'
-                sh "docker pull snakierboss/springfundamentals:${VERSION}"
+                sh "docker pull public.ecr.aws/o0t4x4s0/springfundamentals:${VERSION}"
             }
         }
         stage("docker compose up"){
