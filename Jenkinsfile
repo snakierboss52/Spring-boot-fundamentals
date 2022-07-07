@@ -7,6 +7,11 @@ pipeline {
         }
 
     stages {
+        stage('Deleting local container'){
+            steps{
+                sh 'docker container prune -f'
+            }
+        }
         stage('mvn install'){
             tools{
                 maven 'mvn-3.8.6'
