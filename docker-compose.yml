@@ -4,9 +4,5 @@ services:
     container_name: spring-fundamentals:${VERSION}
     ports:
       - "8580:8580"
-    networks:
-      - local-springboot-network
-networks:
-  - local-springboot-network {}
 
 
