@@ -1,5 +1,10 @@
 services:
   app:
     image: snakierboss/springfundamentals:${VERSION}
+    container_name: spring-fundamentals
+    network:
+      - local-springboot-network
     ports:
       - "8580:8580"
+
+

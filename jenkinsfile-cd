@@ -22,6 +22,8 @@ pipeline {
         stage('Post actions'){
             steps{
                 echo 'Valida en el navegador'
+                echo 'Cleaning volumes'
+                sh 'docker volume prune -f'
             }
         }
     }
