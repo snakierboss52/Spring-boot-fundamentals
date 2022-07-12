@@ -4,6 +4,8 @@ pipeline {
     environment {
         //Use Pipeline Utility Steps plugin to read information from pom.xml into env variables
         VERSION = readMavenPom().getVersion()
+        REGION = 'us-east-2'
+        REPOSITORY_NAME = 'practice-devops-springfundamentals'
         }
 
     stages {
@@ -19,6 +21,14 @@ pipeline {
             }
             steps{
                   sh "mvn install -Dskiptest"
+            }
+        }
+        stage('send artifact to bucket s3'){
+            steps{
+                    sh """
+                         aws s3 cp **/target/*.jar/ s3://springfundamentals-${VERSION}/$REPOSITORY_NAME\
+                                       --acl public-read --recursive
+                    """
             }
         }
         stage('package') {
