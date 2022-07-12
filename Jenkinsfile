@@ -15,20 +15,28 @@ pipeline {
                 sh 'docker image prune -f'
             }
         }
-        stage('mvn install'){
+        stage('mvn clean package'){
             tools{
                 maven 'mvn-3.8.6'
             }
             steps{
-                  sh "mvn install -Dskiptest"
+                  sh "mvn clean package"
             }
         }
         stage('send artifact to bucket s3'){
             steps{
                     sh """
-                         aws s3 cp **/target/*.jar/ s3://springfundamentals-${VERSION}/$REPOSITORY_NAME\
-                                       --acl public-read --recursive
+                         aws s3 cp $HOMEDIR/target/ s3://s3-artifact-springfundamentals/ --recursive --exclude '*' --include '*.jar'
                     """
+                    echo "artifact upload"
+            }
+        }
+        stage('mvn install'){
+             tools{
+                maven 'mvn-3.8.6'
+             }
+            steps{
+                 sh "mvn install -Dskiptest"
             }
         }
         stage('package') {

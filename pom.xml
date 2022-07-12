@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.platzi</groupId>
     <artifactId>springfundamentals</artifactId>
-    <version>0.0.8</version>
+    <version>0.1.1</version>
     <name>springfundamentals</name>
     <description>SpringFundamentals</description>
     <properties>
@@ -81,6 +81,22 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.2</version>
+                <executions>
+                    <execution>
+                        <id>install-external</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <repositoryLayout>default</repositoryLayout>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
