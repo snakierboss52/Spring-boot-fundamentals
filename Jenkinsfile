@@ -6,34 +6,21 @@ pipeline {
         VERSION = readMavenPom().getVersion()
         REGION = 'us-east-2'
         REPOSITORY_NAME = 'practice-devops-springfundamentals'
+        def docker = "docker"
         }
 
     stages {
-        stage('Deleting local container'){
-            steps{
-                sh 'docker container prune -f'
-                sh 'docker image prune -f'
-            }
-        }
         stage('mvn clean package'){
             tools{
-                maven 'mvn-3.8.6'
+                maven 'maven'
             }
             steps{
                   sh "mvn clean package"
             }
         }
-        stage('send artifact to bucket s3'){
-            steps{
-                    sh """
-                         aws s3 cp $HOMEDIR/target/ s3://s3-artifact-springfundamentals/ --recursive --exclude '*' --include '*.jar'
-                    """
-                    echo "artifact upload"
-            }
-        }
         stage('mvn install'){
              tools{
-                maven 'mvn-3.8.6'
+                maven 'maven'
              }
             steps{
                  sh "mvn install -Dskiptest"
@@ -42,22 +29,21 @@ pipeline {
         stage('package') {
             steps {
                 echo 'Building..'
+                script {
+                    docker.build + "springfundamentals:${VERSION}"
+                }
                 sh "docker build -t springfundamentals:${VERSION} ."
-                sh "docker images"
+                sh "docker.images"
             }
         }
-        stage("Sonar"){
-            steps{
-                sh "mvn clean verify sonar:sonar -Dsonar.projectKey=spring-test\
-                     -Dsonar.host.url=http://localhost:9000 \
-                     -Dsonar.login=${TOKEN_SONAR}"
-            }
-        }
-        stage('Pushing image dockerhub'){
+        stage('Pushing image to gcp'){
             steps{
                 echo 'Pushing image to docker hub...'
-                sh "docker tag  springfundamentals:${VERSION} snakierboss/springfundamentals:${VERSION}"
-                sh "docker push snakierboss/springfundamentals:${VERSION}"
+                withDockerRegistry(credentialsId: 'gcr:gcp-test-credentials', url: 'https://gcr.io') {
+                    sh "docker tag  springfundamentals:${VERSION} cr.io/civic-matrix-356905/springfundamentals:${VERSION}"
+                    sh "docker push cr.io/civic-matrix-356905/springfundamentals:${VERSION}"
+                }
+
             }
         }
         stage('Deleting local images'){
